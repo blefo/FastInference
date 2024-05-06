@@ -1,4 +1,3 @@
-import pandas as pd
 import concurrent.futures
 
 from typing import List, Tuple
