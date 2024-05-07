@@ -11,7 +11,7 @@ class DataProcessor:
         self.datablock_chain = self.build_data_chain()
 
     def build_data_chain(self) -> List[DataBlock]:
-        return self.task_manager.build(self.build_data_block, self.raw_data, "Building Data Chain")
+        return self.task_manager.build_multithread(self.build_data_block, self.raw_data, "Building Data Chain")
 
     @staticmethod
     def build_data_block(data: Tuple[str, Dict]):
@@ -38,17 +38,14 @@ class DataProcessor:
 
     def render_prompt_for_many(self, prompt_core: str) -> None:
         try:
-            self.task_manager.build(self.build_prompt_in_datablock,
-                                    self.datablock_chain,
-                                    task_name="Building Prompt in DataChain",
-                                    prompt_core=prompt_core)
+            self.task_manager.build_multithread(self.build_prompt_in_datablock, self.datablock_chain,
+                                                task_name="Building Prompt in DataChain", prompt_core=prompt_core)
         except Exception as e:
             raise Exception('Could not build the PromptTemplate in the DataBlock object: ', e)
 
     def render_prompt_for_many_litellm_format(self) -> None:
         try:
-            self.task_manager.build(self.build_litellm_prompt_in_datablock,
-                                    self.datablock_chain,
-                                    task_name="Building LiteLLM object in DataBlockChain")
+            self.task_manager.build_multithread(self.build_litellm_prompt_in_datablock, self.datablock_chain,
+                                                task_name="Building LiteLLM object in DataBlockChain")
         except Exception as e:
             raise Exception('Could not build the LiteLLM prompt format in the DataBlockChain: ', e)

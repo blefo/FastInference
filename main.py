@@ -1,13 +1,14 @@
 from config.config import Config
 from data_processing.data_processor import DataProcessor
 from managers.task_manager import TasksManager
+from managers.llm_manager import LLMManager
+from utils.data_processing import extract_response_only
 
-from litellm import acompletion
 import asyncio
 
-if __name__ == '__main__':
-    conf = Config('config.json')
-    print(conf)
+async def main():
+    config = Config('config.json')
+    llm_manager = LLMManager(config)
 
     task_manager = TasksManager(24)
 
@@ -19,15 +20,12 @@ if __name__ == '__main__':
 
     data.render_prompt_for_many_litellm_format()
 
-    print("Done")
+    tasks = await task_manager.build_async(llm_manager.acompletion, data.datablock_chain)
+    results = await asyncio.gather(*tasks)
 
-    async def test_get_response():
-        user_message = "Hello, how are you?"
-        messages = [{"content": user_message, "role": "user"}]
-        response = await acompletion(model="huggingface/mistralai/Mistral-7B-Instruct-v0.2", 
-                                     messages=messages, 
-                                     api_key="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")
-        return response
+    results_only_response = extract_response_only(results, task_manager)
 
-    response = asyncio.run(test_get_response())
-    print(response)
+    return results_only_response
+
+if __name__ == '__main__':
+    asyncio.run(main())

@@ -3,24 +3,25 @@ import requests
 import aiohttp
 
 from litellm import acompletion
+from typing import List, Dict
 
 from prompt.prompt_template import PromptTemplate
+
 
 class LLMManager:
     def __init__(self, config) -> None:
         self.model_name = config.model_name
         self.api_key = config.api_key
-        self.custom_llm_provider = config.custom_llm_provider
 
     @backoff.on_exception(backoff.expo,
                           (requests.exceptions.Timeout,
                            requests.exceptions.RequestException,
                            aiohttp.ClientResponseError),
-                          max_time=30)
+                          max_time=300)
     async def acompletions_with_backoff(self, **kwargs):
         return await acompletion(**kwargs)
 
-    async def acompletion(self, content: PromptTemplate):
+    async def acompletion(self, content: List[Dict]):
         return await self.acompletions_with_backoff(model=self.model_name,
                                                     messages=content,
                                                     api_key=self.api_key)
