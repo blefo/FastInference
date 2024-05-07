@@ -12,8 +12,7 @@ async def main():
 
     task_manager = TasksManager(24)
 
-    data_load = extract_from_file("xlsx",
-                                  r"C:\Users\baptiste.lefort\Documents\final_results\perimeter_headlines.xlsx",
+    data_load = extract_from_file(r"C:\Users\baptiste.lefort\Documents\final_results\perimeter_headlines.xlsx",
                                   "Title",
                                   task_manager)[:20]
 
