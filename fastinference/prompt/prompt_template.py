@@ -1,5 +1,5 @@
 from typing import List, Dict
-from data_processing.datablock import DataBlock
+from fastinference.data_processing.datablock import DataBlock
 
 
 class PromptTemplate:

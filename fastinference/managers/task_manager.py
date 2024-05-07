@@ -6,7 +6,7 @@ from functools import partial
 from tqdm import tqdm
 from typing import List, Callable
 
-from data_processing.datablock import DataBlock
+from fastinference.data_processing.datablock import DataBlock
 
 
 class TasksManager:

@@ -1,6 +1,6 @@
 from typing import Tuple, Dict, List
 from prompt.prompt_template import PromptTemplate
-from data_processing.datablock import DataBlock
+from fastinference.data_processing.datablock import DataBlock
 
 
 class DataProcessor:
