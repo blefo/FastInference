@@ -3,12 +3,12 @@ from dataclasses import dataclass
 
 @dataclass
 class DataBlock:
-    def __init__(self, content: str, metadata: dict = {}) -> None:
-        self.content = content
-        self.metadata = metadata
-    
+    content: str
+    metadata: dict = None
+
+    def __post_init__(self):
+        if self.metadata is None:
+            self.metadata = {}
+
     def is_time_series(self) -> bool:
-        if 'date_stamp' in self.metadata:
-            return True
-        else:
-            return False
+        return 'date_stamp' in self.metadata
