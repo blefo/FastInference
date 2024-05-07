@@ -24,7 +24,7 @@ class FastInference:
         # Build the DataBlockChain
         data_loaded = extract_from_file(self.file_path,
                                         self.main_column,
-                                        self.task_manager)[:20]
+                                        self.task_manager)
 
         data = DataProcessor(data_loaded, self.task_manager)
         data.render_prompt_for_many(self.prompt)
