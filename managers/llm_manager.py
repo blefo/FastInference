@@ -1,6 +1,4 @@
 import backoff
-import requests
-import aiohttp
 import openai
 
 from litellm import acompletion
@@ -8,9 +6,9 @@ from typing import List, Dict
 
 
 class LLMManager:
-    def __init__(self, config) -> None:
-        self.model_name = config.model_name
-        self.api_key = config.api_key
+    def __init__(self, api_key, model_name) -> None:
+        self.model_name = model_name
+        self.api_key = api_key
 
     @backoff.on_exception(backoff.expo,
                           (openai.APITimeoutError,

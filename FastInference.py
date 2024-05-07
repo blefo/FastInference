@@ -1,4 +1,3 @@
-from config.config import Config
 from managers.llm_manager import LLMManager
 from managers.task_manager import TasksManager
 from data_processing.data_processor import DataProcessor
@@ -8,9 +7,8 @@ import asyncio
 
 
 class FastInference:
-    def __init__(self, file_path: str, main_column: str, prompt: str, only_response: bool = True):
-        self.config = Config('config.json')
-        self.llm_manager = LLMManager(self.config)
+    def __init__(self, file_path: str, main_column: str, prompt: str, api_key: str, model_name: str, only_response: bool = True):
+        self.llm_manager = LLMManager(api_key, model_name)
         self.task_manager = TasksManager()
         self.file_path = file_path
         self.main_column = main_column
@@ -24,7 +22,7 @@ class FastInference:
         # Build the DataBlockChain
         data_loaded = extract_from_file(self.file_path,
                                         self.main_column,
-                                        self.task_manager)
+                                        self.task_manager)[:200]
 
         data = DataProcessor(data_loaded, self.task_manager)
         data.render_prompt_for_many(self.prompt)
