@@ -2,7 +2,7 @@ from config.config import Config
 from data_processing.data_processor import DataProcessor
 from managers.task_manager import TasksManager
 from managers.llm_manager import LLMManager
-from utils.data_processing import extract_response_only
+from utils.data_processing import extract_response_only, extract_from_file
 
 import asyncio
 
@@ -12,11 +12,15 @@ async def main():
 
     task_manager = TasksManager(24)
 
-    data = DataProcessor([("This is a test", {"data_stamp": "2010-01-12"}),
-                          ('This is a second test', {"data_stamp": '2013-01-05'})],
+    data_load = extract_from_file("xlsx",
+                                  r"C:\Users\baptiste.lefort\Documents\final_results\perimeter_headlines.xlsx",
+                                  "Title",
+                                  task_manager)[:20]
+
+    data = DataProcessor(data_load,
                          task_manager)
 
-    data.render_prompt_for_many("This is the context: {content} with value {data_stamp}")
+    data.render_prompt_for_many("This is the context: {content} with value {Date}")
 
     data.render_prompt_for_many_litellm_format()
 
