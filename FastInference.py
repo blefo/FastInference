@@ -7,8 +7,8 @@ import asyncio
 
 
 class FastInference:
-    def __init__(self, file_path: str, main_column: str, prompt: str, api_key: str, model_name: str, only_response: bool = True):
-        self.llm_manager = LLMManager(api_key, model_name)
+    def __init__(self, file_path: str, main_column: str, prompt: str, only_response: bool = True, **kwargs):
+        self.llm_manager = LLMManager(**kwargs)
         self.task_manager = TasksManager()
         self.file_path = file_path
         self.main_column = main_column
