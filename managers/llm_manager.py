@@ -1,11 +1,10 @@
 import backoff
 import requests
 import aiohttp
+import openai
 
 from litellm import acompletion
 from typing import List, Dict
-
-from prompt.prompt_template import PromptTemplate
 
 
 class LLMManager:
@@ -14,9 +13,13 @@ class LLMManager:
         self.api_key = config.api_key
 
     @backoff.on_exception(backoff.expo,
-                          (requests.exceptions.Timeout,
-                           requests.exceptions.RequestException,
-                           aiohttp.ClientResponseError),
+                          (openai.APITimeoutError,
+                           openai.BadRequestError,
+                           openai.AuthenticationError,
+                           openai.PermissionDeniedError,
+                           openai.NotFoundError,
+                           openai.UnprocessableEntityError,
+                           openai.RateLimitError),
                           max_time=300)
     async def acompletions_with_backoff(self, **kwargs):
         return await acompletion(**kwargs)
@@ -25,16 +28,4 @@ class LLMManager:
         return await self.acompletions_with_backoff(model=self.model_name,
                                                     messages=content,
                                                     api_key=self.api_key)
-
-    #
-    #
-    # async def test_get_response():
-    #     user_message = "Hello, how are you?"
-    #     messages = [{"content": user_message, "role": "user"}]
-    #     response = await acompletion(model="huggingface/mistralai/Mistral-7B-Instruct-v0.2",
-    #                                  messages=messages,
-    #                                  api_key="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")
-    #     return response
-    #
-    # response = asyncio.run(test_get_response())
         
