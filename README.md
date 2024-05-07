@@ -15,4 +15,4 @@ All the LLMs providers can be used with FastInference  [OpenAI, Huggingface, Ver
 FastLLMQuery can be installed using pip:
 
 ```bash
-pip install fastllmquery
+pip install fastinference
