@@ -10,15 +10,20 @@ if __name__ == '__main__':
         ANSWER:
     """
 
-    api_key = "you-key"
-    model_name = "huggingface/meta-llama/Meta-Llama-3-70B-Instruct"
+    api_key = "your-hf-key"
+    model_name = "provider/model_name"
+
+    # api_key = "your-azure-key"
+    # model = "azure/your-azure-model"
+    # api_base = "your-azure-endpoint"
+    # api_version = "your-azure-api-version"
 
     results = FastInference(
         file_path=r"C:\Users\baptiste.lefort\Documents\final_results\perimeter_headlines.xlsx",
         main_column="Title",
         prompt=prompt,
         api_key=api_key,
-        model_name=model_name
+        model=model_name,
     ).run()
 
     print(results)
