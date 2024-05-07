@@ -1,11 +1,10 @@
 from typing import Tuple, Dict, List
 from prompt.prompt_template import PromptTemplate
 from data_processing.datablock import DataBlock
-from managers.task_manager import TasksManager
 
 
 class DataProcessor:
-    def __init__(self, raw_data: List[Tuple[str, Dict]], task_manager: TasksManager) -> None:
+    def __init__(self, raw_data: List[Tuple[str, Dict]], task_manager) -> None:
         self.raw_data = raw_data
         self.task_manager = task_manager
         self.datablock_chain = self.build_data_chain()
