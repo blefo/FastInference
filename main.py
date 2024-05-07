@@ -1,7 +1,6 @@
 from config.config import Config
 from data_processing.data_processor import DataProcessor
 from managers.task_manager import TasksManager
-from prompt.prompt_template import PromptTemplate
 
 from litellm import acompletion
 import asyncio
@@ -10,17 +9,17 @@ if __name__ == '__main__':
     conf = Config('config.json')
     print(conf)
 
-    data = DataProcessor([("This is a test", "2010-01-12"),
-                          ('This is a second test', '2013-01-05')])
-
     task_manager = TasksManager(24)
 
-    prompt = PromptTemplate({'variable1': 'context is a string', 'variable2': 12},
-                            "This is the context: {variable1} with value {variable2}")
+    data = DataProcessor([("This is a test", {"data_stamp": "2010-01-12"}),
+                          ('This is a second test', {"data_stamp": '2013-01-05'})],
+                         task_manager)
 
+    data.render_prompt_for_many("This is the context: {content} with value {data_stamp}")
 
+    data.render_prompt_for_many_litellm_format()
 
-    print(prompt)
+    print("Done")
 
     async def test_get_response():
         user_message = "Hello, how are you?"
