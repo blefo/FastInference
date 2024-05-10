@@ -4,27 +4,29 @@ from fastinference.data_processing.datablock import DataBlock
 
 
 class DataProcessor:
-    def __init__(self, raw_data: List[Tuple[str, Dict]], task_manager) -> None:
+    def __init__(self, raw_data: List[Tuple[str, Dict]], task_manager, prompt: str = None) -> None:
         self.raw_data = raw_data
         self.task_manager = task_manager
+        self.prompt = prompt
         self.datablock_chain = self.build_data_chain()
 
     def build_data_chain(self) -> List[DataBlock]:
         return self.task_manager.build_multithread(self.build_data_block, self.raw_data, "Building Data Chain")
 
-    @staticmethod
-    def build_data_block(data: Tuple[str, Dict]):
+    def build_data_block(self, data: Tuple[str, Dict]):
         if data[1] is not None:
-            return DataBlock(content=data[0],
-                             metadata=data[1])
-        else:
-            return DataBlock(content=data[0])
+            datablock = DataBlock(content=data[0],
+                                  metadata=data[1])
 
-    @staticmethod
-    def build_prompt_in_datablock(data: DataBlock, prompt_core: str) -> DataBlock:
-        prompt = PromptTemplate(data, prompt_core)
-        data.__setattr__('prompt_with_content', prompt)
-        return data
+            if self.prompt:
+                datablock.content_with_prompt = PromptTemplate(datablock, self.prompt)
+        else:
+            datablock = DataBlock(content=data[0])
+
+        if self.prompt:
+            datablock.content_with_prompt = PromptTemplate(datablock, self.prompt)
+
+        return datablock
 
     @staticmethod
     def build_litellm_prompt_in_datablock(data: DataBlock) -> DataBlock:

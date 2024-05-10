@@ -33,7 +33,8 @@ class TasksManager:
 
         loop = asyncio.get_running_loop()
         with ThreadPoolExecutor(max_workers=self.nb_thread) as executor:
-            futures = [executor.submit(self.prepare_task, loop, function_to_execute, block.litellm_prompt_object, **kwargs) for block in datablock_chain]
+            futures = [executor.submit(self.prepare_task, loop, function_to_execute, block, **kwargs)
+                       for block in datablock_chain]
             tasks = [future.result() for future in futures]
 
         return tasks

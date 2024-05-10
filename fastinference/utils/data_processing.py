@@ -1,4 +1,5 @@
 from fastinference.managers.task_manager import TasksManager
+from fastinference.data_processing.datablock import DataBlock
 
 from typing import List, Tuple, Dict
 from itertools import chain
@@ -8,9 +9,9 @@ import numpy as np
 import os
 
 
-def extract_response_only(data: List, task_manager: TasksManager) -> List:
-    def get_response(response):
-        return response.choices[0].message.content
+def extract_response_only(data: List[DataBlock], task_manager: TasksManager) -> List:
+    def get_response(data):
+        return data.response.choices[0].message.content
 
     return task_manager.build_multithread(get_response, data, "Building the LLM Response only")
 

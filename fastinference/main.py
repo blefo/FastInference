@@ -10,8 +10,8 @@ if __name__ == '__main__':
         ANSWER:
     """
 
-    api_key = "your-hf-key"
-    model_name = "provider/model_name"
+    api_key = "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"
+    model_name = "huggingface/google/gemma-1.1-7b-it"
 
     # api_key = "your-azure-key"
     # model = "azure/your-azure-model"

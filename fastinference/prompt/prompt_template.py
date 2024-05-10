@@ -1,9 +1,8 @@
 from typing import List, Dict
-from fastinference.data_processing.datablock import DataBlock
 
 
 class PromptTemplate:
-    def __init__(self, data: DataBlock, core_prompt: str):
+    def __init__(self, data, core_prompt: str):
         self.data = data
         self.core_prompt = core_prompt
         self.prompt = self.render_prompt()

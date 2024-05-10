@@ -22,14 +22,12 @@ class FastInference:
         # Build the DataBlockChain
         data_loaded = extract_from_file(self.file_path,
                                         self.main_column,
-                                        self.task_manager)
+                                        self.task_manager)[:20]
 
-        data = DataProcessor(data_loaded, self.task_manager)
-        data.render_prompt_for_many(self.prompt)
-        data.render_prompt_for_many_litellm_format()
+        data = DataProcessor(data_loaded, self.task_manager, prompt=self.prompt)
 
         # Run the LLM
-        tasks = await self.task_manager.build_async(self.llm_manager.acompletion, data.datablock_chain)
+        tasks = await self.task_manager.build_async(self.llm_manager.get_acompletion, data.datablock_chain)
         results = await asyncio.gather(*tasks)
 
         if self.only_response:
