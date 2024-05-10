@@ -1,7 +1,10 @@
-# FastInference - The Really Fast LLM Querying API Manager (OpenAi, HuggingFace, Ollama, ...)
-
-Call all LLM APIs and get the responses very fast with a **highly robust and distributed** library.
-All the LLMs providers can be used with FastInference  [OpenAI, Huggingface, VertexAI, TogetherAI, Azure, etc.]
+<h1 align="center">
+        ⚡FastInference - The Really Fast LLM Querying API Manager (OpenAi, HuggingFace, Ollama, ...)
+</h1>
+<p align="center">
+            <p align="center">Call all LLM APIs and get the responses very fast with a <b> highly robust and distributed </b> library. <br>
+            All the LLMs providers can be used with FastInference  [OpenAI, Huggingface, VertexAI, TogetherAI, Azure, etc.]
+</p>
 
 ## Features
 
@@ -119,5 +122,19 @@ The FastInference is based on the open-source [LiteLLM](https://github.com/Berri
 | [voyage ai](https://docs.litellm.ai/docs/providers/voyage)                          |                                                         |
 | [xinference [Xorbits Inference]](https://docs.litellm.ai/docs/providers/xinference) |                                                         |
 
-[**Read the Docs**](https://docs.litellm.ai/docs/)
+## Contributing
 
+To contribute: Clone the repo locally -> Make a change -> Submit a PR with the change.
+
+Here's how to modify the repo locally: Clone the repo
+
+```bash
+git clone https://github.com/blefo/FastInference.git
+```
+
+Make your changes then Submit a PR! 🚀
+push your fork to your GitHub repo and submit a PR from there
+
+- Add new method for data loading
+- Make the API KEY and model's information directly loaded in the os variables
+- Optimize the DataBlock Structure
