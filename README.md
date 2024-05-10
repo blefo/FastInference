@@ -138,3 +138,4 @@ push your fork to your GitHub repo and submit a PR from there
 - Add new method for data loading
 - Make the API KEY and model's information directly loaded in the os variables
 - Optimize the DataBlock Structure
+- Leverage the LiteLLM's feature for rotating APIs and keys in order to avoid the exceptions 
