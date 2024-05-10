@@ -1,5 +1,6 @@
 from FastInference import FastInference
 
+
 if __name__ == '__main__':
     prompt = """
         You are given a financial headline and your task is to assess the impact of various economic events and trends on global equities.
@@ -23,7 +24,7 @@ if __name__ == '__main__':
         main_column="Title",
         prompt=prompt,
         api_key=api_key,
-        model=model_name,
+        model=model_name
     ).run()
 
     print(results)

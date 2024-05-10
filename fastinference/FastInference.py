@@ -7,7 +7,7 @@ import asyncio
 
 
 class FastInference:
-    def __init__(self, file_path: str, main_column: str, prompt: str, only_response: bool = True, **kwargs):
+    def __init__(self, file_path: str, main_column: str, prompt: str, only_response: bool = False, **kwargs):
         self.llm_manager = LLMManager(**kwargs)
         self.task_manager = TasksManager()
         self.file_path = file_path
@@ -22,7 +22,7 @@ class FastInference:
         # Build the DataBlockChain
         data_loaded = extract_from_file(self.file_path,
                                         self.main_column,
-                                        self.task_manager)[:20]
+                                        self.task_manager)[:200]
 
         data = DataProcessor(data_loaded, self.task_manager, prompt=self.prompt)
 
