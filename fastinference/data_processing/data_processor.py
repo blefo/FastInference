@@ -1,5 +1,5 @@
 from typing import Tuple, Dict, List
-from prompt.prompt_template import PromptTemplate
+from fastinference.prompt.prompt_template import PromptTemplate
 from fastinference.data_processing.datablock import DataBlock
 
 

@@ -1,4 +1,4 @@
-from managers.task_manager import TasksManager
+from fastinference.managers.task_manager import TasksManager
 
 from typing import List, Tuple, Dict
 from itertools import chain
