@@ -18,4 +18,4 @@ class PromptTemplate:
         try:
             return [{"content": self.prompt, "role": "user"}]
         except Exception as e:
-            print(f'Could not convert the prompt in the litellm format: {e}')
+            raise Exception(f'Could not convert the prompt in the litellm format: {e}')

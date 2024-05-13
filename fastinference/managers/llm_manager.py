@@ -22,7 +22,7 @@ class LLMManager:
     async def acompletions_with_backoff(self, data: DataBlock, **kwargs):
         extract_content_with_prompt = data.content_with_prompt.render_prompt_for_litellm()
         data.response = await acompletion(**self.__dict__, **kwargs, messages=extract_content_with_prompt)
-        return data #await acompletion(**self.__dict__, message=extract_content_with_prompt, **kwargs)
+        return data
 
     async def get_acompletion(self, content: DataBlock):
         return await self.acompletions_with_backoff(data=content)
