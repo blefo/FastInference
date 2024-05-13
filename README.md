@@ -13,6 +13,9 @@
 - **Ease of Use**: Simplified API designed for working with all the LLM providers: easy and fast.
 - **Scalability**: Optimized for large datasets and high concurrency.
 
+## The workflow
+![Diagram of the workflow](https://github.com/blefo/FastInference/blob/main/detailed_workflow.png)
+
 ## Usage
 
 ```bash
