@@ -19,11 +19,11 @@
 ## Usage
 
 ```bash
-pip install fastllmquery
+pip install fastinference
 ```
 
 ```python
-from FastInference import FastInference
+from fastinference import FastInference
 
 prompt = """
             You will be provided with a tweet, and your task is to classify its sentiment as positive, neutral, or negative.
