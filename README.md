@@ -39,7 +39,7 @@ results = FastInference(file_path="your-dataset-file-path",
                         prompt=prompt, 
                         api_key=api_key,
                         model_name=model_name, 
-                        only_response=True)
+                        only_response=True).run()
 print(results)
 ```
 
