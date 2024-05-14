@@ -2,7 +2,7 @@
         ⚡FastInference - The Ultra-Fast LLM Querying Manager (OpenAi, HuggingFace, Ollama, ...)
 </h1>
 <p align="center">
-            <p align="center">Call any LLM API and get the responses very fast with a <b> highly robust and distributed </b> library. <br>
+            <p align="center">Query any LLM API and get the responses very fast with a <b> highly robust and distributed </b> library. <br>
             All the LLMs providers can be used with FastInference  [OpenAI, Huggingface, VertexAI, TogetherAI, Azure, etc.]
 </p>
 
