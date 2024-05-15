@@ -1,7 +1,7 @@
-from managers.llm_manager import LLMManager
-from managers.task_manager import TasksManager
-from data_processing.data_processor import DataProcessor
-from utils.data_processing import extract_from_file, extract_response_only
+from fastinference.managers.llm_manager import LLMManager
+from fastinference.managers.task_manager import TasksManager
+from fastinference.data_processing.data_processor import DataProcessor
+from fastinference.utils.data_processing import extract_from_file, extract_response_only
 
 import asyncio
 

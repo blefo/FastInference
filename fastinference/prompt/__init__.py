@@ -1,4 +1,4 @@
-from prompt.prompt_template import PromptTemplate
+from fastinference.prompt.prompt_template import PromptTemplate
 
 __all__ = [
     'PromptTemplate'
