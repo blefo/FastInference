@@ -19,7 +19,7 @@
 ## Usage
 
 ```bash
-pip install fastinference
+pip install fastinference-llm
 ```
 
 ```python
