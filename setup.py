@@ -16,7 +16,12 @@ setup(
   url = 'https://github.com/blefo/FastInference',
   keywords = ['api', 'fast', 'inference', 'distributed', 'llm'],
   install_requires=[
-
+        'pandas',
+        'numpy',
+        'backoff',
+        'openai',
+        'litellm',
+        'tqdm',
       ],
   classifiers=[
     'Programming Language :: Python :: 3',
