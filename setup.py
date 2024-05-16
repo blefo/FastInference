@@ -8,7 +8,7 @@ setup(
     'fastinference.prompt',
     'fastinference.utils',
   ],
-  version = '0.0.4',
+  version = '0.0.5',
   license='MIT',
   description = 'Seamlessly integrate with top LLM APIs for speedy, robust, and scalable querying. Ideal for developers needing quick, reliable AI-powered responses.',   # Give a short description about your library
   author = 'Baptiste Lefort',
