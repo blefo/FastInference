@@ -6,6 +6,8 @@
             All the LLMs providers can be used with FastInference  [OpenAI, Huggingface, VertexAI, TogetherAI, Azure, etc.]
 </p>
 
+[![Downloads](https://static.pepy.tech/badge/fastinference-llm/month)](https://pepy.tech/project/fastinference-llm)
+
 ## Features
 
 - **High Performance**: Get high inference speed thanks to intelligent asynchronous and distributed querying.
